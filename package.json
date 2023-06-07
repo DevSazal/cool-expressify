@@ -1,0 +1,59 @@
+{
+  "name": "cool-expressify",
+  "version": "0.1.0",
+  "description": "Rest APIs with express, typescript, mongo By DevSazal",
+  "author": "Sazal Ahamed <sazal836@gmail.com> (https://sazal.vercel.app)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevSazal/cool-expressify.git"
+  },
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "lint": "npx --no-install prettier --check 'src/**/*.{js,ts}'",
+    "lintfix": "npx --no-install prettier --write 'src/**/*.{js,ts}'",
+    "test:unit": "jest",
+    "test": "npm run lint && npm run build && npm run test:unit",
+    "start": "nodemon --exec ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@vonage/server-sdk": "^3.5.1",
+    "body-parser": "^1.19.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.17.1",
+    "mongoose": "^7.2.2",
+    "supertest": "^6.3.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.15",
+    "@types/jest": "^29.2.5",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/node": "^18.11.18",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.48.0",
+    "@typescript-eslint/parser": "^5.48.0",
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "eslint-plugin-import": "^2.25.3",
+    "husky": "^8.0.3",
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.8.4",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "make lint"
+    }
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "preset": "ts-jest"
+  }
+}
