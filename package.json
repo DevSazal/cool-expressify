@@ -1,6 +1,6 @@
 {
   "name": "cool-expressify",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Rest APIs with express, typescript, mongo By DevSazal",
   "author": "Sazal Ahamed <sazal836@gmail.com> (https://sazal.vercel.app)",
   "license": "MIT",
@@ -25,6 +25,7 @@
     "supertest": "^6.3.3"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.15",
     "@types/jest": "^29.2.5",
     "@types/jsonwebtoken": "^9.0.2",
@@ -32,6 +33,7 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
+    "bcrypt": "^5.1.0",
     "eslint": "^8.3.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-typescript": "^3.5.2",

@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import User from '../models/user.model';
 import { generateToken } from '../middlewares/authMiddleware';
 import { sendSMS } from '../middlewares/vonageMiddleware';
-import { generateOTP } from '../lib/helpers';
+import { generateOTP, hashing, passwordMatcher } from '../lib/helpers';
 
 export const register = async (request: Request, response: Response, next: NextFunction) => {
   try {
@@ -15,11 +15,12 @@ export const register = async (request: Request, response: Response, next: NextF
 
     const otpCode = generateOTP();
     const otpCreated = new Date();
+    const hashedPassword = await hashing(password);
     const newUser = new User({
       name,
       email,
       mobile,
-      password,
+      password: hashedPassword,
       otp: { code: otpCode, created: otpCreated },
     });
 
@@ -43,7 +44,8 @@ export const login = async (request: Request, response: Response, next: NextFunc
       return response.status(404).json({ error: 'User not found' });
     }
 
-    if (user.password !== password) {
+    const passwordMatch = await passwordMatcher(password, user.password);
+    if (!passwordMatch) {
       return response.status(401).json({ error: 'Invalid password' });
     }
 
@@ -115,7 +117,7 @@ export const updateProfile = async (request: Request, response: Response, next: 
 
     if (email) user.email = email;
     if (name) user.name = name;
-    if (newPassword) user.password = newPassword;
+    if (newPassword) user.password = await hashing(newPassword);
 
     if (email || name || newPassword) await user.save();
     else return response.status(400).json({ error: 'validation failed!' });
