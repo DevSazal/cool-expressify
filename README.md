@@ -126,6 +126,8 @@ npm run start
 npm run test
 ```
 
+#### 🎯 Have question about api endpoints? Please check out our [details guide](https://github.com/DevSazal/cool-expressify/blob/main/DEVGUIDE.md)
+
 #### 🥇 Congrats!! You are good to go
 
 #### 🧑‍💻 Stay in touch
